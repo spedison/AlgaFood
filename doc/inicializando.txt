@@ -1,0 +1,26 @@
+Para rodar um programa Spring Boot
+
+./mvnw clean compile package
+
+## Vai sobreescrever o arquivo de propriedades.
+java -jar ./target/<nome do jar>.jar --propriedade=valor
+
+## Por variável de ambiente.
+sertver.port Tem como Variável de ambiente SERVER_PORT
+export SERVER_PORT=8084
+java -jar ./target/<nome do jar>.jar
+
+2023-01-31 07:52:40.105 DEBUG 26842 --- [           main] b.c.s.algafood.AlgaFoodApplication       : Running with Spring Boot v2.7.8, Spring v5.3.25
+2023-01-31 07:52:40.105  INFO 26842 --- [           main] b.c.s.algafood.AlgaFoodApplication       : No active profile set, falling back to 1 default profile: "default"
+2023-01-31 07:52:40.815  INFO 26842 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8084 (http)
+
+
+Podemos colocar em variáveis de ambiente o valor de profiles.
+SPRING_PROFILES_ACTIVE
+ou
+parâmetro --spring.profiles.active=prod,dev,xxx...
+
+
+-- Banco de dados --
+docker pull mariadb/server:10.3
+docker run -d --name maria -eMARIADB_ROOT_PASSWORD=123456 -eMARIADB_DATABASE=algafood -p 3305:3306 --restart on-failure mariadb/server:10.3
